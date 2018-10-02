@@ -94,6 +94,9 @@
 +(UIImage*) imageWithColor:(UIColor*)color;
 
 
++ (UIImage*)cutImage:(UIImage *)image toRect:(CGRect)rect;
+
+
 @end
 
 

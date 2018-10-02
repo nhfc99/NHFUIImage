@@ -79,6 +79,20 @@
     return newImage;
 }
 
++ (UIImage*)cutImage:(UIImage *)image toRect:(CGRect)rect
+{
+    CGImageRef subImageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+    CGRect smallBounds = CGRectMake(0, 0, CGImageGetWidth(subImageRef), CGImageGetHeight(subImageRef));
+    
+    UIGraphicsBeginImageContext(smallBounds.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextDrawImage(context, smallBounds, subImageRef);
+    UIImage* smallImage = [UIImage imageWithCGImage:subImageRef];
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
+
 +(UIImage*)createCentreImage:(UIImage *)image size:(CGSize )size percent:(float)percent{
 
     float newSize = size.width;
